@@ -21,10 +21,16 @@ public class StringSpeed {
         //    At the end: String t = sb.toString();
         start = System.nanoTime();
         String t = "";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append("t");
+        }
+        t = sb.toString();
         long builderTime = System.nanoTime() - start;
 
         System.out.println("Same text? " + s.equals(t));
         System.out.println("+= time (ms): " + plusTime / 1_000_000.0);
         System.out.println("StringBuilder time (ms): " + builderTime / 1_000_000.0);
+        // += is much slower because each += builds a new string and recopies every character while StringBuilder appends it into one reusable piece.
     }
 }
